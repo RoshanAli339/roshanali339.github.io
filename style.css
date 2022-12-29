@@ -9,7 +9,7 @@
 
 body {
     background-color: #845EC2;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .navbar {
@@ -25,6 +25,7 @@ body {
     width: 100%;
     height: 8%;
     background-color: #4B4453;
+    z-index: 999;
 }
 
 .navbar .menu {
