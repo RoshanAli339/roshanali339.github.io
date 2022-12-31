@@ -145,8 +145,8 @@ body {
     margin-top: 25px;
 }
 
-.tech, .non-tech {
-    font-size: 40px;
+.tech, .non-tech{
+    font-size: 40px; 
 }
 
 .tech ul li p strong a{
