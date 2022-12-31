@@ -9,7 +9,7 @@
 
 body {
     background-color: #845EC2;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .navbar {
@@ -127,8 +127,8 @@ body {
 }
 
 .about {
+    width: 100%;
     height: 100vh;
-    padding-top: 130px;
 }
 
 .about .heading2 {
@@ -170,4 +170,22 @@ body {
 
 .non-tech {
     padding-left: 150px;
+}
+
+.icons
+{
+    margin-top: 150px;
+    float: right;
+    margin-right: 20px;
+}
+
+.myIcon{
+    width: 25px;
+    height: 25px;
+    margin-right: 20px;
+    transition: all 500ms ease;
+}
+
+.myIcon:hover{
+    transform: translate(-3px, -3px);
 }
