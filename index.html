@@ -35,6 +35,7 @@
             line-height: 1.6;
             overflow-x: hidden;
             cursor: none;
+            padding-bottom: 100px;
         }
 
         /* Custom Cursor */
@@ -84,44 +85,192 @@
             position: relative;
         }
 
-        /* Background Effects */
+        /* Fluid Background Effects */
         .bg-glow {
             position: fixed;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(0, 243, 255, 0.05) 0%, rgba(0,0,0,0) 70%);
+            background: radial-gradient(circle, rgba(0, 243, 255, 0.08) 0%, rgba(0,0,0,0) 70%);
             border-radius: 50%;
             top: -100px;
             left: -100px;
             z-index: -1;
             pointer-events: none;
+            animation: blobMorph1 15s ease-in-out infinite;
         }
+        
         .bg-glow-2 {
             position: fixed;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(189, 0, 255, 0.05) 0%, rgba(0,0,0,0) 70%);
+            background: radial-gradient(circle, rgba(189, 0, 255, 0.08) 0%, rgba(0,0,0,0) 70%);
             border-radius: 50%;
             bottom: -100px;
             right: -100px;
             z-index: -1;
             pointer-events: none;
+            animation: blobMorph2 18s ease-in-out infinite;
         }
-
-        /* Navigation */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 0;
+        
+        .bg-fluid {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .fluid-blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .fluid-blob-1 {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.3) 0%, rgba(0, 100, 255, 0.2) 100%);
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .fluid-blob-2 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(225deg, rgba(189, 0, 255, 0.3) 0%, rgba(255, 0, 150, 0.2) 100%);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            top: 40%;
+            right: 10%;
+            animation-delay: -5s;
+        }
+        
+        .fluid-blob-3 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(45deg, rgba(0, 255, 150, 0.25) 0%, rgba(0, 200, 255, 0.15) 100%);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            bottom: 15%;
+            left: 30%;
+            animation-delay: -10s;
+        }
+        
+        .fluid-blob-4 {
+            width: 450px;
+            height: 450px;
+            background: linear-gradient(315deg, rgba(255, 100, 100, 0.2) 0%, rgba(189, 0, 255, 0.2) 100%);
+            border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+            top: 20%;
+            right: 30%;
+            animation-delay: -15s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+            25% {
+                transform: translate(30px, -30px) scale(1.1) rotate(5deg);
+            }
+            50% {
+                transform: translate(-20px, 20px) scale(0.95) rotate(-5deg);
+            }
+            75% {
+                transform: translate(20px, 10px) scale(1.05) rotate(3deg);
+            }
+        }
+        
+        @keyframes blobMorph1 {
+            0%, 100% {
+                border-radius: 50%;
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                border-radius: 60% 40% 55% 45%;
+                transform: translate(50px, 30px) scale(1.1);
+            }
+            66% {
+                border-radius: 40% 60% 45% 55%;
+                transform: translate(-30px, -20px) scale(0.95);
+            }
+        }
+        
+        @keyframes blobMorph2 {
+            0%, 100% {
+                border-radius: 50%;
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                border-radius: 45% 55% 60% 40%;
+                transform: translate(-40px, 50px) scale(1.15);
+            }
+            66% {
+                border-radius: 55% 45% 40% 60%;
+                transform: translate(30px, -30px) scale(0.9);
+            }
+        }
+        
+        /* Flowing Gradient Overlay */
+        .bg-flow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            background: linear-gradient(-45deg, 
+                rgba(0, 10, 20, 1) 0%, 
+                rgba(10, 5, 30, 1) 25%, 
+                rgba(5, 15, 35, 1) 50%, 
+                rgba(20, 5, 30, 1) 75%, 
+                rgba(0, 10, 20, 1) 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 30s ease infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Navigation - Menu Bar Style (Bottom) */
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 0;
+            position: fixed;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: auto;
+            min-width: 700px;
             z-index: 100;
-            backdrop-filter: blur(10px);
-            background: rgba(5, 5, 5, 0.8);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            background: rgba(15, 15, 20, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4), 
+                        0 0 20px rgba(0, 243, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        nav:hover {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 
+                        0 0 30px rgba(0, 243, 255, 0.15);
         }
         
         .nav-container {
@@ -129,50 +278,77 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1.5rem;
+            gap: 2rem;
         }
 
         .logo {
             font-family: var(--font-heading);
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             background: var(--gradient-main);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            white-space: nowrap;
+            cursor: none;
         }
 
-        .nav-links {
+        .nav-menu {
             display: flex;
-            gap: 2rem;
+            gap: 0.5rem;
+            align-items: center;
         }
 
         .nav-link {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
             color: var(--text-secondary);
             position: relative;
+            transition: var(--transition);
+            background: transparent;
+            border: 1px solid transparent;
+            cursor: none;
         }
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--text-primary);
+            background: rgba(0, 243, 255, 0.1);
+            border-color: rgba(0, 243, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+        }
+
+        /* Mobile Menu Button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            padding: 10px;
+            background: none;
+            border: none;
+            cursor: none;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
             background: var(--accent-primary);
             transition: var(--transition);
+            border-radius: 2px;
         }
 
-        .nav-link:hover {
-            color: var(--text-primary);
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
         }
 
-        .nav-link:hover::after {
-            width: 100%;
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
         }
 
         /* Hero Section */
@@ -222,6 +398,7 @@
             overflow: hidden;
             z-index: 1;
             transition: var(--transition);
+            cursor: none;
         }
 
         .btn::before {
@@ -720,6 +897,7 @@
             color: var(--text-secondary);
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: var(--transition);
+            cursor: none;
         }
 
         .social-link:hover {
@@ -760,9 +938,57 @@
             .about-grid {
                 grid-template-columns: 1fr;
             }
-            .nav-links {
-                display: none;
+            
+            /* Mobile Navigation - Bottom */
+            nav {
+                bottom: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: calc(100% - 40px);
+                min-width: auto;
+                border-radius: 30px;
+                padding: 0.8rem 0;
+                box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4), 
+                            0 0 20px rgba(0, 243, 255, 0.1);
             }
+            
+            .nav-container {
+                padding: 0 1rem;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-menu {
+                position: absolute;
+                bottom: calc(100% + 10px);
+                left: 50%;
+                transform: translateX(-50%);
+                flex-direction: column;
+                background: rgba(15, 15, 20, 0.95);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 20px;
+                padding: 1rem;
+                gap: 0.5rem;
+                min-width: 200px;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+            }
+            
+            .nav-menu.active {
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .nav-link {
+                width: 100%;
+                text-align: center;
+                padding: 0.8rem 1.5rem;
+            }
+            
             section {
                 padding: 3rem 0;
             }
@@ -794,22 +1020,36 @@
     <div class="cursor"></div>
     <div class="cursor-dot"></div>
 
-    <!-- Background Glows -->
+    <!-- Fluid Background Effects -->
+    <div class="bg-flow"></div>
+    <div class="bg-fluid">
+        <div class="fluid-blob fluid-blob-1"></div>
+        <div class="fluid-blob fluid-blob-2"></div>
+        <div class="fluid-blob fluid-blob-3"></div>
+        <div class="fluid-blob fluid-blob-4"></div>
+    </div>
     <div class="bg-glow"></div>
     <div class="bg-glow-2"></div>
 
-    <!-- Navigation -->
+    <!-- Navigation - Menu Bar -->
     <nav>
         <div class="nav-container">
             <a href="#" class="logo">RAS.</a>
-            <div class="nav-links">
+            <div class="nav-menu" id="navMenu">
                 <a href="#about" class="nav-link">About</a>
                 <a href="#experience" class="nav-link">Experience</a>
-                <a href="#skills" class="nav-link">Skills</a>
                 <a href="#projects" class="nav-link">Projects</a>
+                <a href="#skills" class="nav-link">Skills</a>
                 <a href="#education" class="nav-link">Education</a>
+                <a href="#certifications" class="nav-link">Certs</a>
+                <a href="#achievements" class="nav-link">Awards</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
@@ -1332,6 +1572,21 @@
             cursor.style.transform = 'scale(1)';
         });
 
+        // Cursor bulging effect on button hover
+        const interactiveElements = document.querySelectorAll('.nav-link, .btn, .menu-toggle, .project-card, .timeline-content, .skill-item, .contact-link, .social-icon, .logo');
+        
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.5)';
+                cursor.style.background = 'rgba(0, 243, 255, 0.3)';
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.background = 'rgba(0, 243, 255, 0.5)';
+            });
+        });
+
         // Typing Effect
         const textElement = document.getElementById('typing-text');
         const phrases = [
@@ -1389,6 +1644,23 @@
             observer.observe(el);
         });
 
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
         // Smooth Scroll for Anchor Links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1401,6 +1673,32 @@
                 }
             });
         });
+
+        // Scroll Spy - Active Link Highlighting
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function updateActiveLink() {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveLink);
+        window.addEventListener('load', updateActiveLink);
     </script>
 </body>
 </html>
